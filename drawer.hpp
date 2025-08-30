@@ -130,7 +130,7 @@ class Drawer {
 
   public:
     Drawer(
-        FPSCamera &cam, const unsigned int &screen_width_px, const unsigned int &screen_height_px,
+        ICamera &cam, const unsigned int &screen_width_px, const unsigned int &screen_height_px,
         DrawerSettings settings = {},
         IVPCDrawFn screen_space_bounding_box_drawing_fun = [](draw_info::IVPColor &ivpc) {})
         : screen_space_sizer(cam, screen_width_px, screen_height_px),
@@ -204,6 +204,7 @@ class Drawer {
 
                     e_ivp.just_drew_object();
                 } else { // NOTE: means not visible.
+
                     bool can_be_removed = e_ivp.hasnt_been_seen_in_a_while() and
                                           e_ivp.ivp_x.buffer_modification_tracker.has_data_in_buffer();
 
